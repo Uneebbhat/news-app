@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>NewsAPI Example</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-3">
+        <h1>Latest News</h1>
+        <div id="news-cards" class="row mt-3"></div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        // Your API key from NewsAPI
+        const apiKey = '4ec45d58d6f04f82b59be673e5baf490';
+
+        // URL to fetch top headlines
+        const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
+
+        // Fetch the news articles from the API
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const articles = data.articles;
+
+                // Iterate over the articles and create Bootstrap cards for each one
+                articles.forEach(article => {
+                    const card = `
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <img src="${article.urlToImage}" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">${article.title}</h5>
+                  <p class="card-text">${article.description}</p>
+                  <a href="${article.url}" target="_blank" class="btn btn-primary">Read more</a>
+                </div>
+              </div>
+            </div>
+          `;
+                    $('#news-cards').append(card);
+                });
+            })
+            .catch(error => console.error(error));
+    </script>
+</body>
+
+</html>
