@@ -1,0 +1,67 @@
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<div id="news-cards" class="row mt-3"></div>
+
+const MAX_WORDS = 80; // Maximum number of words to show
+
+// Your API key from NewsAPI
+const apiKey = '4ec45d58d6f04f82b59be673e5baf490';
+
+// URL to fetch top headlines
+const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
+
+// Fetch the news articles from the API
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        const articles = data.articles;
+
+        // Iterate over the articles and create Bootstrap cards for each one
+        articles.forEach(article => {
+            let truncatedText = '';
+            if (article.description) {
+                const words = article.description.split('');
+                const truncatedWords = words.slice(0, MAX_WORDS);
+                truncatedText = truncatedWords.join('') + '...';
+            }
+            const card = `
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <img src="${article.urlToImage}" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">${article.title}</h5>
+              <p class="card-text">${truncatedText}</p>
+              <a href="${article.url}" target="_blank" class="btn btn-primary">Read more</a>
+            </div>
+          </div>
+        </div>
+      `;
+            $('#news-cards').append(card);
+        });
+    })
+    .catch(error => console.error(error));
+
+
+
+<section class="main-section">
+        <div class="section-wrapper">
+            <div class="section-card">
+                <div class="card-img">
+                    <img src="https://media.wired.com/photos/5acd484a0a43cb2563ab81dc/191:100/w_1280,c_limit/03-Super-Mario-Odyssey-screenshot-SOURCE-Nintendo.jpg" alt="">
+                </div>
+                <div class="car-body">
+                    <h5>7 Best Mario Day Deals on Nintendo Games and Consoles (2023) - WIRED</h5>
+                    <p>Celebrate everyone's favorite red-capped plumber with these discounts on Nintendo consoles and games.</p>
+                </div>
+                <button type="button" class="btn btn-primary">Read more</button>
+            </div>
+        </div>
+    </section>
