@@ -33,10 +33,24 @@ p {
 
 
 /* Card Sectino */
+.section-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    justify-content: center;
+    margin-top: 50px;
+}
+
 .section-card {
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
+    /* padding: 0 10px; */
+}
+
+.section-card .card-body, .buttons {
+    padding: 0 10px;
 }
 
 .buttons img {
