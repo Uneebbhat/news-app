@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 body {
@@ -17,6 +18,10 @@ h5 {
 
 p {
     margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* Navbar */
@@ -33,55 +38,6 @@ p {
 
 
 /* Card Sectino */
-.section-wrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1.4rem;
-    justify-content: center;
-    margin-top: 50px;
-}
-
-.section-card {
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    /* padding: 0 10px; */
-}
-
-.section-card .card-body, .buttons {
-    padding: 0 10px;
-}
-
-.buttons img {
-    margin-left: 20px;
-    cursor: pointer;
-}
-
-.section-card {
-    max-width: 300px;
-    height: 420px;
-}
-
-.section-card .card-img img {
-    max-width: 300px;
-    height: 200px;
-    object-fit: cover;
-}
-
-.form-control {
-    max-width: 140px;
-    height: 33px;
-    padding: 0 10px;
-    border: 1px solid #000;
-    outline: none;
-}
-
-.btn {
-    background-color: #444CE7;
-    color: white;
-    padding: 9px 20px;
-    border: none;
-    outline-color: transparent;
-    cursor: pointer;
+.main-section {
+    padding: 0 50px;
 }
