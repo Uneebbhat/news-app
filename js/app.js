@@ -9,7 +9,7 @@ fetch(url)
         // Iterate over the articles and create Bootstrap cards for each one
         articles.forEach(article => {
             const card = `
-            <div class="col-md-4 mb-3">
+            <div class="col-md-4 mb-3 noteCard">
                 <div class="card">
                 <img src="${article.urlToImage}" alt="" style="width: 100%; height: 200px; object-fit: cover;">
                     <div class="card-body">
@@ -25,3 +25,20 @@ fetch(url)
         });
     })
     .catch(error => console.error(error));
+
+
+let search = document.getElementById('search');
+search.addEventListener('input', function (e) {
+    let inputVal = search.value;
+    let noteCards = document.getElementsByClassName('card');
+    Array.from(noteCards).forEach(function (element) {
+        let cardTxt = element.getElementsByTagName('p')[0].innerText;
+        if (cardTxt.includes(inputVal)) {
+            element.style.display = 'block';
+        }
+        else {
+            element.style.display = 'none';
+        }
+        // console.log(cardTxt);
+    })
+})    
